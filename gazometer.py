@@ -1,5 +1,7 @@
 from gpiozero import Button
 from signal import pause
+import datetime
+
 
 def read_old():
 	return float(open("value", "r").read())
@@ -16,7 +18,7 @@ def seen_low():
 def add_round():
 	global locked
 	if not locked:
-		new_val = read_old() + 0.001
+		new_val = read_old() + 0.01
 		write_absolute(new_val)
 		locked = True
 		print("add_round, new val: %s" % new_val)
